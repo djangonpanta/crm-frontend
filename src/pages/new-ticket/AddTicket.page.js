@@ -22,7 +22,7 @@ export const AddTicket = () => {
     e.preventDefault();
     setFrmDataError(initialFrmError);
     const isSubjectValid = await shortTest(frmData.subject);
-    console.log(isSubjectValid);
+
     setFrmDataError({
       ...frmDataError,
       subject: !isSubjectValid,
