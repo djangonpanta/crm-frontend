@@ -1,6 +1,7 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 import propType from "prop-types";
+import { Link } from "react-router-dom";
 export const TicketTable = ({ tickets }) => {
   return (
     <Table striped bordered hover>
@@ -17,17 +18,21 @@ export const TicketTable = ({ tickets }) => {
           tickets.map((ticket) => (
             <tr key={ticket.id}>
               <td>{ticket.id}</td>
-              <td>{ticket.subject}</td>
+              <Link to={`/ticket/${ticket.id}`}>
+                <td>{ticket.subject}</td>
+              </Link>
               <td>{ticket.status}</td>
               <td>{ticket.addedAt}</td>
             </tr>
           ))
         ) : (
-          <tr>
-            <td colSpan="4" className="text-center">
-              No ticket to show
-            </td>
-          </tr>
+          <tbody>
+            <tr>
+              <td colSpan="4" className="text-center">
+                No ticket to show
+              </td>
+            </tr>
+          </tbody>
         )}
       </tbody>
     </Table>
