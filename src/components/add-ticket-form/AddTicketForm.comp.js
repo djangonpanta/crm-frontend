@@ -1,9 +1,18 @@
 import React from "react";
 import { Jumbotron, Form, Button, Row, Col } from "react-bootstrap";
+import propTypes from "prop-types";
+import "./addTicket.css";
 
-export const AddTicketForm = ({ handleOnSubmit, handleOnChange }) => {
+export const AddTicketForm = ({
+  handleOnSubmit,
+  handleOnChange,
+  formData,
+  formDataError,
+}) => {
   return (
-    <Jumbotron>
+    <Jumbotron className=" add-new-ticket bg-light">
+      <h1 className="text-info text-center">Addd New Ticket</h1>
+      <hr />
       <Form autoComplete="off" onSubmit={handleOnSubmit}>
         <Form.Group as={Row}>
           <Form.Label column sm={3}>
@@ -14,10 +23,13 @@ export const AddTicketForm = ({ handleOnSubmit, handleOnChange }) => {
               type="text"
               name="subject"
               onChange={handleOnChange}
-              // value={email}
+              value={formData.subject}
               placeholder="Subject"
               required
             />
+            <Form.Text className="text-danger">
+              {formDataError.subject && "Subject is required"}
+            </Form.Text>
           </Col>
         </Form.Group>
         <Form.Group as={Row}>
@@ -29,6 +41,7 @@ export const AddTicketForm = ({ handleOnSubmit, handleOnChange }) => {
               type="date"
               name="issueDate"
               onChange={handleOnChange}
+              value={formData.date}
               required
             />
           </Col>
@@ -37,11 +50,10 @@ export const AddTicketForm = ({ handleOnSubmit, handleOnChange }) => {
           <Form.Label>Issue</Form.Label>
           <Form.Control
             as="textarea"
-            name="details"
+            name="detail"
             rows="5"
             onChange={handleOnChange}
-            // value={password}
-
+            value={formData.detail}
             required
           />
         </Form.Group>
@@ -51,4 +63,11 @@ export const AddTicketForm = ({ handleOnSubmit, handleOnChange }) => {
       </Form>
     </Jumbotron>
   );
+};
+
+AddTicketForm.propTypes = {
+  handleOnChange: propTypes.func.isRequired,
+  handleOnSubmit: propTypes.func.isRequired,
+  formData: propTypes.object.isRequired,
+  formDataError: propTypes.object.isRequired,
 };
