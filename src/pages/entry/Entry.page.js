@@ -27,7 +27,8 @@ export const Entry = () => {
       return alert("Fill up all the form!");
     }
     //call api to submit the form
-    console.log(email, password);
+    setEmail("");
+    setPassword("");
   };
   const handleOnResetSubmit = (e) => {
     e.preventDefault();
